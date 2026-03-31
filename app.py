@@ -1,15 +1,16 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
+import os
 
 app = Flask(__name__)
 
-# Connect to database
+# Database connection
 def get_db_connection():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
     return conn
 
-# Create table
+# Create table if not exists
 def create_table():
     conn = get_db_connection()
     conn.execute('''
@@ -32,7 +33,7 @@ create_table()
 def home():
     return render_template("index.html")
 
-# Store form data
+# Register user
 @app.route("/register", methods=["POST"])
 def register():
     name = request.form["name"]
@@ -51,7 +52,7 @@ def register():
 
     return redirect("/")
 
-# View data
+# View all registrations
 @app.route("/view")
 def view():
     conn = get_db_connection()
@@ -59,5 +60,7 @@ def view():
     conn.close()
     return render_template("view.html", users=users)
 
+# Run for Render
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port)
