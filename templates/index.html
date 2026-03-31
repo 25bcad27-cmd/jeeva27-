@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kristu Jayanti University Event Registration</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Kristu Jayanti University</h1>
+    <h2>Event Registration</h2>
+
+    <form action="/register" method="POST" id="form">
+
+        <input type="text" name="name" placeholder="Full Name" required>
+
+        <input type="email" name="email" placeholder="Email" required>
+
+        <input type="text" name="phone" placeholder="Phone Number" required>
+
+        <input type="text" name="college" value="Kristu Jayanti University" readonly>
+
+        <select name="event" required>
+            <option value="">Select Event</option>
+            <option>Hackathon</option>
+            <option>Coding Contest</option>
+            <option>UI/UX Workshop</option>
+            <option>Tech Talk</option>
+        </select>
+
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+<script src="/static/script.js"></script>
+
+</body>
+</html>
